@@ -25,7 +25,7 @@ CREATE TABLE `Media` (
   `MediaID` int(11) NOT NULL AUTO_INCREMENT,
   `State` varchar(50) NOT NULL,
   `ServerTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `PlayTime` int(11) NOT NULL,
+  `CurrentTime` int(11) NOT NULL,
   `MediaName` varchar(250) NOT NULL,
   PRIMARY KEY (`MediaID`),
   UNIQUE KEY `MediaName` (`MediaName`)
