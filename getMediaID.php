@@ -3,7 +3,7 @@ include 'dbConnection.php';
 
 if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 {
-	$mediaName = mysql_real_escape_string(htmlspecialchars($_POST['MediaName']));
+	$mediaName = mysql_real_escape_string(htmlspecialchars(urldecode($_POST['MediaName'])));
 	
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
@@ -15,12 +15,13 @@ if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 	
 	$mediaExists = false;
 	$row = NULL;
+	$result = NULL;
 	
 	do
 	{
-		$sql="SELECT MediaID FROM Media WHERE MediaName=".$mediaName;
+		$sql="SELECT MediaID FROM Media WHERE MediaName='".$mediaName."'";
 		$result = mysql_query($sql);		
-		$mediaExists = (mysql_num_rows($result) > 0);
+		$mediaExists = $result && (mysql_num_rows($result) > 0);
 		if(!$mediaExists)
 		{
 			$sql = "INSERT INTO `Media` (`State`, `ServerTime`, `CurrentTime`, `MediaName`)".
@@ -30,8 +31,8 @@ if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 				die('Error: ' . mysql_error());
 			}
 		}
-		$row = mysql_fetch_array($result);
 	} while(!$mediaExists);
+	$row = mysql_fetch_array($result);
 	
 	echo $row['MediaID'];
 	

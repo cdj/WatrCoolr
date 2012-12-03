@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Water Cooler TV Player</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="updatePlayTime.js"></script>
+<script>
+var MediaID = -1;
+
+function setUp()
+{
+	// Get Media ID
+	$.ajax({
+	  type: "POST",
+	  url: "getMediaID.php",
+	  data: { 'MediaName' : $('#FeatureVideo').prop('currentSrc') },
+	  // callback handler that will be called on success
+	  success: function(response, textStatus, jqXHR){
+		// log a message to the console
+		console.log("Media ID is '" + response + "'");
+		MediaID = response;
+	  },
+	  // callback handler that will be called on error
+	  error: function(jqXHR, textStatus, errorThrown){
+		// log the error to the console
+		console.log(
+			"The following error occured: "+
+			textStatus, errorThrown
+		);
+	  }
+	 });
+}
+</script>
+</head>
+
+<body onload="setUp()">
+<video id="FeatureVideo" controls loop width="90%">
+  <source src="media/Pulp Fiction (1994).mp4" type="video/mp4">
+</video>
+</body>
+</html>
