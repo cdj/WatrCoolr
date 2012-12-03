@@ -1,4 +1,6 @@
 <?php
+include 'dbConnection.php';
+
 if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	&& (isset($_POST['UserID'])) && is_numeric($_POST['UserID'])
 	&& (isset($_POST['CommentText'])) && (strlen(trim($_POST['CommentText'])) > 0)) {
@@ -7,13 +9,13 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	$mediaID = $_POST['MediaID'];
 	$userID = $_POST['UserID'];
 	
-	$con = mysql_connect("localhost","root","");
+	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
 		die('Could not connect: ' . mysql_error());
 	}
 	
-	mysql_select_db("WaterCooler", $con);
+	mysql_select_db($dbName, $con);
 	
 	// Figure out the current play time for the media
 	$sql="SELECT CurrentTime FROM Media WHERE MediaID=".$mediaID;

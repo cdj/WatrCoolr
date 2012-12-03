@@ -1,11 +1,13 @@
 <?php 
-$con = mysql_connect("localhost","root","");
+include 'dbConnection.php';
+
+$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
 
-mysql_select_db("WaterCooler", $con);
+mysql_select_db($dbName, $con);
 
 // Figure out the current play time for the media
 $sql="SELECT MediaID FROM Media ORDER BY ServerTime DESC";

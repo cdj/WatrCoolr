@@ -1,15 +1,17 @@
 <?php
+include 'dbConnection.php';
+
 if (isset($_POST['UserName']) && (strlen(trim($_POST['UserName'])) > 0))
 {
 	$userName = mysql_real_escape_string(htmlspecialchars(strip_tags($_POST['UserName'])));
 	
-	$con = mysql_connect("localhost","root","");
+	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
 		die('Could not connect: ' . mysql_error());
 	}
 	
-	mysql_select_db("WaterCooler", $con);
+	mysql_select_db($dbName, $con);
 	
 	$sql = "INSERT INTO `Users` (`UserName`) VALUES ('".$userName."')";
 	

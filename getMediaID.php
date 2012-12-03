@@ -1,15 +1,17 @@
 <?php
+include 'dbConnection.php';
+
 if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 {
 	$mediaName = mysql_real_escape_string(htmlspecialchars($_POST['MediaName']));
 	
-	$con = mysql_connect("localhost","root","");
+	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
 		die('Could not connect: ' . mysql_error());
 	}
 	
-	mysql_select_db("WaterCooler", $con);
+	mysql_select_db($dbName, $con);
 	
 	$mediaExists = false;
 	$row = NULL;
