@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* CSS Document */
 
+body
+{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
 .mainUI
 {
 	width: 100%; 
@@ -13,4 +17,13 @@
 {
 	margin: 8px;
 	background-color:#0C0;
+}
+#UserReg
+{
+	padding-top: 10%;
+	background-color: rgba(203, 203, 203, 0.8);
+	height:100%;
+	text-align:center;
+	top: 0px;
+	bottom: 0px;
 }
