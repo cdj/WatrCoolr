@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Water Cooler TV</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="submitcomment.js"></script>
+<script src="getComments.js"></script>
+<script>
+function setUp()
+{
+	// Get the currently playing media
+	$.get("getCurrentMediaID.php", function(data){
+			$('#MediaID').val(data);
+		});
+		
+	// TODO: Register/get user ID
+	
+	// TODO: Retrieve comments
+	
+	$("input#CommentText").focus();
+}
+</script>
+<link href="main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="setUp()">
+<div id="Comments" class="mainUI" style="background-color: #CCC; position: absolute; top: 0px; bottom: 30px;"></div>
+<div id="CommentBar" class="mainUI" style="bottom: 0px; height: 30px; background-color: #39F;">
+  <form name="form1" id="form1" method="post" action="">
+  	<input type="hidden" name="UserID" id="UserID" value="1">
+  	<input type="hidden" name="MediaID" id="MediaID" value="0">
+    <input type="text" name="CommentText" id="CommentText" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 95px; top: 4px;">
+    <input type="submit" name="CommentButton" id="CommentButton" value="Comment" style="position: absolute; width: 85px; right: 5px; top: 4px;">
+  </form>
+</div>
+</body>
+</html>

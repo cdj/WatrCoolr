@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.mainUI
+{
+	width: 100%; 
+	position: absolute;
+	margin: 0px; 
+	left: 0px; 
+	right: 0px;
+}
+#Comments div
+{
+	margin: 8px;
+	background-color:#0C0;
+}
