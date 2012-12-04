@@ -13,6 +13,18 @@ body
 	left: 0px; 
 	right: 0px;
 }
+#CommentBar
+{
+	bottom: 0px;
+	height: 30px;
+	background-color: #39F;
+}
+#Comments
+{
+	background-color: #CCC;
+	top: 0px;
+	bottom: 30px;
+}
 #Comments div
 {
 	margin: 8px;

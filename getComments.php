@@ -18,8 +18,8 @@ if (isset($_GET['MediaID'])) {
 		" INNER JOIN Media m".
 		" ON c.MediaID = m.MediaID".
 		" WHERE m.MediaID = ".$mediaID.
-		" AND m.CurrentTime - ".Constants::commentSpan." <= c.PlayTime".
-		" AND m.CurrentTime >= c.PlayTime".
+		" AND (m.CurrentTime - ".Constants::commentPostSpan.") <= c.PlayTime".
+		" AND (m.CurrentTime + ".Constants::commentPreSpan.") >= c.PlayTime".
 		" ORDER BY c.PlayTime, c.CommentTime";
 	$result = mysql_query($sql);
 	if (!$result)
@@ -28,7 +28,7 @@ if (isset($_GET['MediaID'])) {
 	}
 	else
 	{
-		$ret = [];
+		$ret = array();
 		while ($row = mysql_fetch_assoc($result)) {
 			$ret[] = $row;
 		}

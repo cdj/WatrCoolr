@@ -1,5 +1,6 @@
 <?php
 class Constants{
-	const commentSpan = 3;
+	const commentPreSpan = 3;
+	const commentPostSpan = 30;
 }
 ?>

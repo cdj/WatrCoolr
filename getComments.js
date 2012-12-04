@@ -4,15 +4,15 @@ $(document).ready(function(){
 	var userID = getCookie("UserID");
 	var commentsUL = $('#commentsList');
 	var intComments = setInterval(function(){
-		if(mediaID) {
-			$.get("getComments.php",{MediaID:mediaID},function(data){
+		if(mediaID >= 0) {
+			$.get("getComments.php", { MediaID : mediaID }, function(data){
 				var len = data.length;
 				var toDel = [];
 
 				//here we remove
 				for(shownId in shownComments) {
 					if(!shownIn(shownId, data)) {
-						var elem = $('#comment-'+shownId);						
+						var elem = $('#comment-'+shownId);
 						elem.fadeOut(400,function(){elem.remove()});
 						toDel.push(shownId);
 					}
@@ -33,7 +33,8 @@ $(document).ready(function(){
 						htmlItem.fadeIn();
 					}
 				}
-			}, 'json');
+			}, 'json')
+			.error(function(data) { console.log("Error " + data.status + ": " + data.responseText); });
 		}
 	}, 500);
 
