@@ -15,8 +15,10 @@ function setUp()
 	$('input#CommentButton').attr("disabled", "disabled");
 	
 	// Get the currently playing media
+	mediaID = 0;
 	$.get("getCurrentMediaID.php", function(data){
 			$('input#MediaID').val(data);
+			mediaID = data;
 		});
 	
 	// Get user ID
@@ -49,7 +51,10 @@ function startConversation()
 
 <body onload="setUp()">
 </div>
-<div id="Comments" class="mainUI" style="background-color: #CCC; top: 0px; bottom: 30px;"></div>
+<div id="Comments" class="mainUI" style="background-color: #CCC; top: 0px; bottom: 30px;">
+	<ul id="commentsList">
+	</ul>
+</div>
 <div id="CommentBar" class="mainUI" style="bottom: 0px; height: 30px; background-color: #39F;">
   <form name="form1" id="form1" method="post" action="">
   	<input type="hidden" name="UserID" id="UserID" value="1">
