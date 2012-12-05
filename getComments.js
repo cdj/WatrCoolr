@@ -26,11 +26,13 @@ $(document).ready(function(){
 					var row = data[i];
 					if(shownComments[row['CommentID']] === undefined){
 						shownComments[row['CommentID']] = row;
-						var classOwner = row['UserID'] === userID ? 'comment-owner': '';
-						var htmlItem = $('<li class="comment hidden '+classOwner+'" id="comment-'+row['CommentID']+'">'+
-							row['UserName']+'<br/>'+row['Comment']+'</li>');
+						var classOwner = row['UserID'] === userID ? 'alert-success': 'alert-info';
+						var liOther = row['UserID'] === userID ? '': 'comment-other';
+						var htmlItem = $('<li class="comment hidden '+liOther+'" id="comment-'+row['CommentID']+
+							'"><div class="alert '+classOwner+'"><span class="comment-name">'+
+							row['UserName']+'</span><br/>'+row['Comment']+'</div></li>');
 						commentsUL.append(htmlItem);
-						htmlItem.fadeIn();
+						htmlItem.fadeIn(400, function(){console.log('fade in');});
 					}
 				}
 			}, 'json')
