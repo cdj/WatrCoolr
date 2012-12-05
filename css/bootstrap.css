@@ -977,12 +977,6 @@ input[type="color"],
           border-radius: 3px;
 }
 
-input,
-textarea,
-.uneditable-input {
-  width: 206px;
-}
-
 textarea {
   height: auto;
 }

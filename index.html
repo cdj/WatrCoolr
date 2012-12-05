@@ -51,7 +51,6 @@ function startConversation()
 </head>
 
 <body onload="setUp()">
-</div>
 <div id="Comments" class="mainUI">
 	<ul id="commentsList">
 	</ul>
@@ -60,8 +59,8 @@ function startConversation()
   <form name="form1" id="form1" method="post" action="">
   	<input type="hidden" name="UserID" id="UserID" value="1">
   	<input type="hidden" name="MediaID" id="MediaID" value="0">
-    <input type="text" name="CommentText" id="CommentText" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 95px; top: 4px;" class="input-xxlarge">
-    <input type="submit" name="CommentButton" id="CommentButton" value="Comment" style="position: absolute; left: 560px; top: 4px;" class="btn btn-inverse">
+    <input type="text" name="CommentText" id="CommentText" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 100px; top: 4px;">
+    <input type="submit" name="CommentButton" id="CommentButton" value="Comment" style="position: absolute; right: 5px; top: 4px;" class="btn btn-inverse">
   </form>
 </div>
 <div id="UserReg" class="mainUI">
@@ -70,5 +69,6 @@ function startConversation()
     <input name="UserName" id="UserName" type="text" maxlength="30"><br/>
     <input type="submit" id="UserRegButton" value="Join the conversation">
   </form>
+</div>
 </body>
 </html>
