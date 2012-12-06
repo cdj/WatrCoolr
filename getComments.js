@@ -1,10 +1,10 @@
 // JavaScript Document
 $(document).ready(function(){
 	var shownComments = {};
-	var userID = getCookie("UserID");
 	var commentsUL = $('#commentsList');
 	var intComments = setInterval(function(){
 		if(mediaID >= 0) {
+			var userID = getCookie("UserID");
 			$.get("getComments.php", { MediaID : mediaID }, function(data){
 				var len = data.length;
 				var toDel = [];
