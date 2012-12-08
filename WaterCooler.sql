@@ -37,3 +37,5 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `UserName` (`UserName`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+ALTER TABLE `Comments` ADD `Mood` varchar(50) DEFAULT 'normal';

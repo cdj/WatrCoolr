@@ -24,7 +24,7 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	
 	// add the comment
 	$sql="INSERT INTO Comments (`UserID`, `MediaID`, `Comment`, `CommentTime`, `PlayTime`, `PhotoURL`, `PhotoPosX`, `PhotoPosY`)".
-		 " VALUES ('".$userID."', '".$mediaID."', '".$inputField."', CURRENT_TIMESTAMP, '".$row['CurrentTime']."', NULL, NULL, NULL)";
+		 " VALUES ('".$userID."', '".$mediaID."', '".$inputField."', UTC_TIMESTAMP, '".$row['CurrentTime']."', NULL, NULL, NULL)";
 	
 	if (!mysql_query($sql,$con))
 	{
