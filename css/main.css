@@ -86,6 +86,7 @@ body
 {
 	display: inline-block;
 	text-align: left;
+	max-width: 90%;
 }
 #UserReg
 {
@@ -114,4 +115,5 @@ body
 }
 #commentsList{
 	margin: 10px;
+	overflow: auto;
 }

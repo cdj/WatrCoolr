@@ -5,6 +5,7 @@ function logLast(){
 	console.log(gotComments);
 }
 $(document).ready(function(){
+	setListHeight();
 	var commentsUL = $('#commentsList');
 	var now = new Date();
 	var utcString = now.getUTCFullYear().toString()
@@ -51,7 +52,7 @@ $(document).ready(function(){
 							row['UserName']+'</span><br/>'+row['Comment']+'</div></li>');
 						commentsUL.append(htmlItem);
 						htmlItem.animate(
-							{opacity: row['CommentTime'] > utcString ? 1 : 0.5},
+							{opacity: row['CommentTime'] > utcString ? 1 : 0.4},
 							400
 						);
 					}
@@ -75,5 +76,9 @@ $(document).ready(function(){
 			numStr = 0 + numStr;
 		}
 		return numStr;
+	}
+
+	function setListHeight() {
+		$('#commentsList').height(window.innerHeight - $('#CommentBar').outerHeight() - 30);
 	}
  });
