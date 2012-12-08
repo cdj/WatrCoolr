@@ -101,6 +101,10 @@ body
 	display: none;
 }
 
+.transparent{
+	opacity: 0;
+}
+
 .left{
 	float: left;
 }

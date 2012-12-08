@@ -11,7 +11,7 @@ if (isset($_GET['MediaID'])) {
 
 	mysql_select_db($dbName, $con);
 
-	$sql="SELECT c.CommentID as CommentID, c.UserID as UserID, c.Comment as Comment, c.PlayTime as PlayTime, u.UserName as UserName".
+	$sql="SELECT c.CommentID as CommentID, c.UserID as UserID, c.Comment as Comment, c.PlayTime as PlayTime, u.UserName as UserName, c.CommentTime + 0 as CommentTime".
 		" FROM Comments c".
 		" INNER JOIN Users u".
 		" ON c.UserID = u.UserID".
