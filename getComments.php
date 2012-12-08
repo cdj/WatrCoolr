@@ -5,7 +5,9 @@ if (isset($_GET['MediaID'])) {
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
-		die('Could not connect: ' . mysql_error());
+		$errorText = mysql_error();
+		header('HTTP/1.1 500 '.$errorText);
+		die('Could not connect: ' . $errorText);
 	}
 	$mediaID = $_GET['MediaID'];
 
@@ -24,7 +26,9 @@ if (isset($_GET['MediaID'])) {
 	$result = mysql_query($sql);
 	if (!$result)
 	{
-		die('Error: ' . mysql_error());
+		$errorText = mysql_error();
+		header('HTTP/1.1 500 '.$errorText);
+		die('Error: ' . $errorText);
 	}
 	else
 	{

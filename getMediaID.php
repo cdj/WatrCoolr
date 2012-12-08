@@ -8,7 +8,9 @@ if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
-		die('Could not connect: ' . mysql_error());
+		$errorText = mysql_error();
+		header('HTTP/1.1 500 '.$errorText);
+		die('Could not connect: ' . $errorText);
 	}
 	
 	mysql_select_db($dbName, $con);
@@ -28,7 +30,9 @@ if (isset($_POST['MediaName']) && (strlen(trim($_POST['MediaName'])) > 0))
 				   " VALUES ('new', CURRENT_TIMESTAMP, '0', '".$mediaName."')";			
 			if (!mysql_query($sql,$con))
 			{
-				die('Error: ' . mysql_error());
+				$errorText = mysql_error();
+				header('HTTP/1.1 500 '.$errorText);
+				die('Error: ' . $errorText);
 			}
 		}
 	} while(!$mediaExists);

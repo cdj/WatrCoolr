@@ -12,7 +12,9 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
-		die('Could not connect: ' . mysql_error());
+		$errorText = mysql_error();
+		header('HTTP/1.1 500 '.$errorText);
+		die('Could not connect: ' . $errorText);
 	}
 	
 	mysql_select_db($dbName, $con);
@@ -28,7 +30,9 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	
 	if (!mysql_query($sql,$con))
 	{
-		die('Error: ' . mysql_error());
+		$errorText = mysql_error();
+		header('HTTP/1.1 500 '.$errorText);
+		die('Error: ' . $errorText);
 	}
 	
 	mysql_close($con);
