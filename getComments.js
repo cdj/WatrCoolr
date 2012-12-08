@@ -14,13 +14,12 @@ $(document).ready(function(){
 		+ makeString(now.getUTCHours(), 2)
 		+ makeString(now.getUTCMinutes(), 2)
 		+ makeString(now.getUTCSeconds(), 2);
-	console.log(utcString);
 	var intComments = setInterval(function(){
 		if(mediaID >= 0) {
 			var userID = getCookie("UserID");
 			if (userID == null || userID == "")
 			{
-				window.location.reload();
+				return;
 			}
 			$.get("getComments.php", { MediaID : mediaID }, function(data){
 				gotComments = data;
@@ -38,12 +37,16 @@ $(document).ready(function(){
 					var elem = $('#comment-'+shownId);
 					elem.fadeOut(400,function(){elem.remove();delete shownComments[shownId];});
 				}
+				
+				// Is the list scrolled to the bottom?
+				//  i.e. is the last comment on screen?
+				var isAtBottom = commentsUL.children().length > 0 ? $(".comment").filter(":onScreen").last().is(":last-child") : true;
+				console.log(isAtBottom);
 
 				//here we add
 				for(i = 0; i < len; i++){
 					var row = data[i];
 					if(shownComments[row['CommentID']] === undefined){
-						console.log(row['CommentTime']);
 						shownComments[row['CommentID']] = row;
 						var classOwner = row['UserID'] === userID ? 'alert-success': 'alert-info';
 						var liOther = row['UserID'] === userID ? '': 'comment-other';
@@ -56,6 +59,12 @@ $(document).ready(function(){
 							400
 						);
 					}
+				}
+				
+				// If we were at the bottom before, make sure we still are
+				if (isAtBottom)
+				{
+					commentsUL.animate({ scrollTop: commentsUL.prop("scrollHeight") }, 200);
 				}
 			}, 'json')
 			.error(function(data) { console.log("Error " + data.status + ": " + data.responseText); });
