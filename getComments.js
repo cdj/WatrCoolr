@@ -5,7 +5,6 @@ function logLast(){
 	console.log(gotComments);
 }
 $(document).ready(function(){
-	setListHeight();
 	var commentsUL = $('#commentsList');
 	var now = new Date();
 	var utcString = now.getUTCFullYear().toString()
@@ -17,6 +16,8 @@ $(document).ready(function(){
 	var addedAmount;
 	var intComments = setInterval(function(){
 		if(mediaID >= 0) {
+		setListHeight();
+		setBarWidth();
 			var userID = getCookie("UserID");
 			if (userID == null || userID == "")
 			{
@@ -54,7 +55,7 @@ $(document).ready(function(){
 						var classOwner = row['UserID'] === userID ? 'alert-success': 'alert-info';
 						var liOther = row['UserID'] === userID ? '': 'comment-other';
 						var htmlItem = $('<li class="comment transparent '+liOther+'" id="comment-'+row['CommentID']+
-							'"><div class="alert '+classOwner+'"><span class="comment-name">'+
+							'"><div class="alert '+classOwner+' '+row['Mood']+'"><span class="comment-name">'+
 							row['UserName']+'</span><br/>'+row['Comment']+'</div></li>');
 						commentsUL.append(htmlItem);
 						htmlItem.animate(
@@ -92,6 +93,11 @@ $(document).ready(function(){
 	}
 
 	function setListHeight() {
-		$('#commentsList').height(window.innerHeight - $('#CommentBar').outerHeight() - 70);
+		$('#commentsList').height(window.innerHeight - $('#CommentBar').outerHeight() - 20);
+	}
+
+	function setBarWidth(){
+		var form = $('#CommentBar > form');
+		form.find('input[name="CommentText"]').width(form.find('select[name="Mood"]').position().left - 25);
 	}
  });

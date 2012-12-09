@@ -8,6 +8,7 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	$inputField = mysql_real_escape_string(htmlspecialchars($_POST['CommentText']));
 	$mediaID = $_POST['MediaID'];
 	$userID = $_POST['UserID'];
+	$mood = $_POST['Mood'];
 	
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
@@ -25,8 +26,8 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	$row = mysql_fetch_array($result);
 	
 	// add the comment
-	$sql="INSERT INTO Comments (`UserID`, `MediaID`, `Comment`, `CommentTime`, `PlayTime`, `PhotoURL`, `PhotoPosX`, `PhotoPosY`)".
-		 " VALUES ('".$userID."', '".$mediaID."', '".$inputField."', UTC_TIMESTAMP, '".$row['CurrentTime']."', NULL, NULL, NULL)";
+	$sql="INSERT INTO Comments (`UserID`, `MediaID`, `Comment`, `CommentTime`, `PlayTime`, `PhotoURL`, `PhotoPosX`, `PhotoPosY`, `Mood`)".
+		 " VALUES ('".$userID."', '".$mediaID."', '".$inputField."', UTC_TIMESTAMP, '".$row['CurrentTime']."', NULL, NULL, NULL,'".$mood."')";
 	
 	if (!mysql_query($sql,$con))
 	{

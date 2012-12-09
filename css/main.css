@@ -66,6 +66,13 @@ body
 	background-color: #39F;
 	padding: 4px 0;
 }
+#CommentBar input, #CommentBar select{
+	margin-bottom: 0px;
+}
+#CommentBar select{
+	position: absolute;
+	right: 75px;
+}
 #Comments
 {
 	background-color: #CCC;
@@ -82,7 +89,23 @@ body
 .comment.comment-other{
 	text-align: right;
 }
-#Comments div
+.comment .question{
+	background: url('../img/question-green.gif');
+	color:#222222;
+}
+.comment .rant{
+	color: #B94A48;
+	background-color: #F2DEDE;
+	border-color: #EED3D7;
+}
+.comment.comment-other .question{
+	background: url('../img/question-blue.gif');
+}
+.comment.comment-other .rant{
+	color: #c76701;
+	background-color: #efcda9;
+	border-color: #dcb286;}
+#Comments li > div
 {
 	display: inline-block;
 	text-align: left;
@@ -116,4 +139,7 @@ body
 #commentsList{
 	margin: 10px;
 	overflow: auto;
+}
+.clear{
+	clear: both;
 }

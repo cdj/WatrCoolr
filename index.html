@@ -63,7 +63,12 @@ function startConversation()
   	<input type="hidden" name="UserID" id="UserID" value="1">
   	<input type="hidden" name="MediaID" id="MediaID" value="0">
     <input type="text" name="CommentText" id="CommentText" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 100px; top: 4px;">
-    <input type="submit" name="CommentButton" id="CommentButton" value="Comment" style="position: absolute; right: 5px; top: 4px;" class="btn btn-inverse">
+    <select name="Mood" class="input-medium">
+    	<option value="normal">Comment</option>
+    	<option value="question">Question</option>
+    	<option value="rant">Rant</option>
+    </select>
+    <input type="submit" name="CommentButton" id="CommentButton" value="Send" style="position: absolute; right: 5px; top: 4px;" class="btn btn-inverse">
   </form>
 </div>
 <div id="UserReg" class="mainUI">
