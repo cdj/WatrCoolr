@@ -88,6 +88,6 @@ $(document).ready(function(){
 	}
 
 	function setListHeight() {
-		$('#commentsList').height(window.innerHeight - $('#CommentBar').outerHeight() - 30);
+		$('#commentsList').height(window.innerHeight - $('#CommentBar').outerHeight() - 70);
 	}
  });

@@ -14,7 +14,7 @@ if (isset($_POST['UserName']) && (strlen(trim($_POST['UserName'])) > 0))
 	}
 	
 	mysql_select_db($dbName, $con);
-	}
+
 	
 	$userID = -1;
 	$num_rows = -1;
