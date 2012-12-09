@@ -44,7 +44,6 @@ $(document).ready(function(){
 				// Is the list scrolled to the bottom?
 				//  i.e. is the last comment on screen?
 				var isAtBottom = commentsUL.children().length > 0 ? $(".comment").filter(":onScreen").last().is(":last-child") : true;
-				console.log(isAtBottom);
 
 				//here we add
 				for(i = 0; i < len; i++){
