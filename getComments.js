@@ -14,6 +14,7 @@ $(document).ready(function(){
 		+ makeString(now.getUTCHours(), 2)
 		+ makeString(now.getUTCMinutes(), 2)
 		+ makeString(now.getUTCSeconds(), 2);
+	var addedAmount;
 	var intComments = setInterval(function(){
 		if(mediaID >= 0) {
 			var userID = getCookie("UserID");
@@ -22,6 +23,7 @@ $(document).ready(function(){
 				return;
 			}
 			$.get("getComments.php", { MediaID : mediaID }, function(data){
+				addedAmount = 0;
 				gotComments = data;
 				var len = data.length;
 				var toDel = [];
@@ -47,6 +49,7 @@ $(document).ready(function(){
 				for(i = 0; i < len; i++){
 					var row = data[i];
 					if(shownComments[row['CommentID']] === undefined){
+						addedAmount++;
 						shownComments[row['CommentID']] = row;
 						var classOwner = row['UserID'] === userID ? 'alert-success': 'alert-info';
 						var liOther = row['UserID'] === userID ? '': 'comment-other';
@@ -62,7 +65,8 @@ $(document).ready(function(){
 				}
 				
 				// If we were at the bottom before, make sure we still are
-				if (isAtBottom)
+				//only scroll if new comments added, to prevent flickering
+				if (isAtBottom && addedAmount > 0)
 				{
 					commentsUL.animate({ scrollTop: commentsUL.prop("scrollHeight") }, 200);
 				}
