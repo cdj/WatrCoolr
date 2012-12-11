@@ -55,8 +55,9 @@ $(document).ready(function(){
 						var classOwner = row['UserID'] === userID ? 'alert-success': 'alert-info';
 						var liOther = row['UserID'] === userID ? '': 'comment-other';
 						var htmlItem = $('<li class="comment transparent '+liOther+'" id="comment-'+row['CommentID']+
-							'"><div class="alert '+classOwner+' '+row['Mood']+'"><span class="comment-name">'+
-							row['UserName']+'</span><br/>'+row['Comment']+'</div></li>');
+							'"><div class="alert '+classOwner+' '+row['Mood']+'"><div><span class="comment-name">'+
+							row['UserName']+'</span><br/>'+
+							row['Comment']+'</div></div></li>');
 						commentsUL.append(htmlItem);
 						htmlItem.animate(
 							{opacity: row['CommentTime'] > utcString ? 1 : 0.4},
