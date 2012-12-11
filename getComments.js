@@ -1,11 +1,15 @@
 // JavaScript Document
 var shownComments = {};
 var gotComments;
+var elem = document.createElement('video');
+var canPlayVideo = elem.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/,'');
+
 function logLast(){
 	console.log(gotComments);
 }
 $(document).ready(function(){
 	var commentsUL = $('#commentsList');
+	var videoThumbnail = $('#Thumbnail');
 	var now = new Date();
 	var utcString = now.getUTCFullYear().toString()
 		+ makeString(now.getUTCMonth() + 1, 2)
@@ -44,7 +48,6 @@ $(document).ready(function(){
 				// Is the list scrolled to the bottom?
 				//  i.e. is the last comment on screen?
 				var isAtBottom = commentsUL.children().length > 0 ? $(".comment").filter(":onScreen").last().is(":last-child") : true;
-				console.log(isAtBottom);
 
 				//here we add
 				for(i = 0; i < len; i++){
@@ -67,7 +70,7 @@ $(document).ready(function(){
 				}
 				
 				// If we were at the bottom before, make sure we still are
-				//only scroll if new comments added, to prevent flickering
+				// Only scrolling if new comments were added, to prevent flickering
 				if (isAtBottom && addedAmount > 0)
 				{
 					commentsUL.animate({ scrollTop: commentsUL.prop("scrollHeight") }, 200);
@@ -101,4 +104,24 @@ $(document).ready(function(){
 		var form = $('#CommentBar > form');
 		form.find('input[name="CommentText"]').width(form.find('select[name="Mood"]').position().left - 25);
 	}
+	
+	commentsUL.scroll(function() {
+		if(canPlayVideo != "")
+		{
+			var isAtBottom = commentsUL.children().length > 0 ? $(".comment").filter(":onScreen").last().is(":last-child") : true;
+		
+			if(!isAtBottom)
+			{
+				// Set video position to that of top visible comment
+				var commentTime = $(".comment").filter(":onScreen").first().attr('id').substr(8);
+				$('#ThumbnailVideo').prop('currentTime', commentTime);
+				
+				// Trigger video to appear and fade
+				videoThumbnail.stop();
+				videoThumbnail.prop('opacity', 'inherit');
+				videoThumbnail.css('display', 'block');
+				videoThumbnail.fadeOut(750);
+			}
+		}
+	});
  });

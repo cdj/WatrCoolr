@@ -39,9 +39,7 @@ function setUp()
 function startConversation()
 {
 	// Get rid of reg form
-	document.getElementById('UserReg').style.display = 'none';
-	
-	// TODO: Retrieve comments
+	$('#UserReg').css('display', 'none');
 	
 	// Re-enable form
 	$('input#CommentText').removeAttr("disabled");
@@ -57,12 +55,17 @@ function startConversation()
 <div id="Comments" class="mainUI">
 	<ul id="commentsList">
 	</ul>
+    <div id="Thumbnail" style="display:none; bottom:0px; position:absolute; max-width:480px; max-height:272px;">
+        <video id="ThumbnailVideo" width="100%" height="50%" preload="auto">
+            <source src="media/Lost.S01E01.small.short.mp4" type="video/mp4">
+        </video>
+    </div>
 </div>
 <div id="CommentBar" class="mainUI">
   <form name="form1" id="form1" method="post" action="">
   	<input type="hidden" name="UserID" id="UserID" value="1">
   	<input type="hidden" name="MediaID" id="MediaID" value="0">
-    <input type="text" name="CommentText" id="CommentText" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 100px; top: 4px;">
+    <input type="text" name="CommentText" id="CommentText" autocomplete="off" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 100px; top: 4px;">
     <select name="Mood" class="input-medium">
     	<option value="normal">Comment</option>
     	<option value="question">Question</option>
@@ -74,7 +77,7 @@ function startConversation()
 <div id="UserReg" class="mainUI">
   <h1>Welcome to Water Cooler TV</h1>
   <img id="WelcomeLogo" src="wc-logo.png" alt="Water Cooler TV">
-<form action="" method="post" name="UserRegistrationForm" id="UserRegistrationForm">
+  <form action="" method="post" name="UserRegistrationForm" id="UserRegistrationForm">
     <label for="UserName" id="username_label">What is your name?</label><br/>
     <input name="UserName" id="UserName" type="text" maxlength="30"><br/>
     <input type="submit" id="UserRegButton" value="Join the conversation">
