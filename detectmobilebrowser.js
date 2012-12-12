@@ -19,5 +19,6 @@ $(document).ready(function(){
 		$('option[value="rant"]').html(">-0 &nbsp;&nbsp; Rant");
 		
 		$('select').removeClass('input-medium').width($('select').height() + 6);
+		canPlayVideo = "";
 	}
 });
