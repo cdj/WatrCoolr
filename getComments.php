@@ -13,14 +13,13 @@ if (isset($_GET['MediaID'])) {
 
 	mysql_select_db($dbName, $con);
 
-	$sql="SELECT c.CommentID as CommentID, c.UserID as UserID, c.Comment as Comment, c.PlayTime as PlayTime, u.UserName as UserName, c.CommentTime + 0 as CommentTime, c.Mood as Mood".
+	$sql="SELECT c.CommentID as CommentID, c.UserID as UserID, c.Comment as Comment, c.PlayTime as PlayTime, u.UserName as UserName, c.CommentTime + 0 as CommentTime, c.Mood as Mood, m.CurrentTime as MediaTime".
 		" FROM Comments c".
 		" INNER JOIN Users u".
 		" ON c.UserID = u.UserID".
 		" INNER JOIN Media m".
 		" ON c.MediaID = m.MediaID".
 		" WHERE m.MediaID = ".$mediaID.
-		" AND (m.CurrentTime - ".Constants::commentPostSpan.") <= c.PlayTime".
 		" AND (m.CurrentTime + ".Constants::commentPreSpan.") >= c.PlayTime".
 		" ORDER BY c.PlayTime, c.CommentTime";
 	$result = mysql_query($sql);

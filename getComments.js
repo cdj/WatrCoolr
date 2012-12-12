@@ -50,6 +50,7 @@ $(document).ready(function(){
 				var isAtBottom = commentsUL.children().length > 0 ? $(".comment").filter(":onScreen").last().is(":last-child") : true;
 
 				//here we add
+				var diffTime;
 				for(i = 0; i < len; i++){
 					var row = data[i];
 					if(shownComments[row['CommentID']] === undefined){
@@ -60,14 +61,19 @@ $(document).ready(function(){
 						var htmlItem = $('<li class="comment transparent '+liOther+'" id="comment-'+row['CommentID']+
 							'"><div class="alert '+classOwner+' '+row['Mood']+'"><div><span class="comment-name">'+
 							row['UserName']+'</span><br/>'+
-							row['Comment']+'</div></div></li>');
+							'<span class="comment-text">'+row['Comment']+'</span></div></div></li>');
 						commentsUL.append(htmlItem);
 						htmlItem.animate(
 							{opacity: row['CommentTime'] > utcString ? 1 : 0.4},
 							400
 						);
 					}
+					if(i === len - 1) diffTime = parseInt((parseInt(row['MediaTime'],10) - parseInt(row['PlayTime'],10)) / 60, 10);
 				}
+				commentsUL.find('.comment-difftime').remove();
+				//console.log(commentsUL.children(':last-child').find('.comment-text'));
+				commentsUL.children(':last-child').find('.comment-text')
+					.after('<div class="comment-difftime">Play time '+diffTime+' m ago</div>');
 				
 				// If we were at the bottom before, make sure we still are
 				// Only scrolling if new comments were added, to prevent flickering

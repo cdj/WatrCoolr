@@ -79,12 +79,19 @@ body
 	top: 0px;
 	bottom: 30px;
 }
-#Comments .comment-name
+#Comments .comment-name, #Comments .comment-difftime 
 {
 	font-size: 10px;
 	font-weight: bold;
 	position: relative;
 	top:-2px;
+}
+#Comments .comment-difftime {
+	top: 0px;
+	margin-top: 4px;
+}
+.comment > div > div{
+	min-width: 90px;
 }
 .comment.comment-other{
 	text-align: right;
