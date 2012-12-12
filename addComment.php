@@ -5,7 +5,6 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 	&& (isset($_POST['UserID'])) && is_numeric($_POST['UserID'])
 	&& (isset($_POST['CommentText'])) && (strlen(trim($_POST['CommentText'])) > 0)) {
 	
-	$inputField = mysql_real_escape_string(htmlspecialchars($_POST['CommentText']));
 	$mediaID = $_POST['MediaID'];
 	$userID = $_POST['UserID'];
 	$mood = $_POST['Mood'];
@@ -17,6 +16,8 @@ if ((isset($_POST['MediaID'])) && is_numeric($_POST['MediaID'])
 		header('HTTP/1.1 500 '.$errorText);
 		die('Could not connect: ' . $errorText);
 	}
+	
+	$inputField = mysql_real_escape_string(htmlspecialchars($_POST['CommentText']));
 	
 	mysql_select_db($dbName, $con);
 	

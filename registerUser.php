@@ -3,8 +3,6 @@ include 'dbConnection.php';
 
 if (isset($_POST['UserName']) && (strlen(trim($_POST['UserName'])) > 0))
 {
-	$userName = mysql_real_escape_string(htmlspecialchars(strip_tags($_POST['UserName'])));
-	
 	$con = mysql_connect($dbServerName,$dbUserName,$dbUserPassword);
 	if (!$con)
 	{
@@ -12,6 +10,8 @@ if (isset($_POST['UserName']) && (strlen(trim($_POST['UserName'])) > 0))
 		header('HTTP/1.1 500 '.$errorText);
 		die('Could not connect: ' . $errorText);
 	}
+	
+	$userName = mysql_real_escape_string(htmlspecialchars(strip_tags($_POST['UserName'])));
 	
 	mysql_select_db($dbName, $con);
 
