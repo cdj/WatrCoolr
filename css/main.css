@@ -50,6 +50,7 @@ table {
 body
 {
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color: #CCC;
 }
 .mainUI
 {
@@ -75,9 +76,7 @@ body
 }
 #Comments
 {
-	background-color: #CCC;
-	top: 0px;
-	bottom: 30px;
+	position: relative;
 }
 #Comments .comment-name, #Comments .comment-difftime 
 {
