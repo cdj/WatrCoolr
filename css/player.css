@@ -1,0 +1,14 @@
+.blue, a{
+	color: #2AE;
+}
+a:hover{
+	color: #4CF;
+}
+body{
+	color: white;
+	background-color: black;
+}
+.main{
+	padding-left: 200px;
+	background:url('../wc-logo.png') no-repeat;
+}
