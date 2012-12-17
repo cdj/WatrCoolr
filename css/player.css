@@ -8,7 +8,9 @@ body{
 	color: white;
 	background-color: black;
 }
-.main{
-	padding-left: 200px;
-	background:url('../wc-logo.png') no-repeat;
+img
+{
+	margin-left:50px;
+	margin-right:50px;
+	float:left;
 }
