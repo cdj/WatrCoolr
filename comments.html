@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icons/touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="icons/touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="icons/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="icons/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-startup-image" href="icons/startup.png">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<title>Water Cooler TV</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="detectmobilebrowser.js"></script>
+<script src="addComment.js"></script>
+<script src="getComments.js"></script>
+<script src="registerUser.js"></script>
+<script src="jquery.onscreen.js"></script>
+<script>
+var mediaID = -1;
+function setUp()
+{
+	// Disable form elements while setting up the page
+	$('input#CommentText').attr("disabled", "disabled");
+	$('input#CommentButton').attr("disabled", "disabled");
+	
+	// Get the currently playing media
+	$.get("getCurrentMediaID.php", function(data){
+			$('input#MediaID').val(data);
+			mediaID = data;
+		});
+	
+	// Get user ID
+	var userID = getCookie("UserID");
+	if (userID == null || userID == "")
+	{
+		$("input#UserName").focus();
+	}
+	else
+	{
+		$('input#UserID').val(userID);
+		startConversation();
+	}
+}
+function startConversation()
+{
+	// Get rid of reg form
+	$('#UserReg').css('display', 'none');
+	
+	// Re-enable form
+	$('input#CommentText').removeAttr("disabled");
+	$('input#CommentButton').removeAttr("disabled");
+	$("input#CommentText").focus();
+}
+</script>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="setUp()">
+<div id="Comments" class="mainUI">
+	<ul id="commentsList">
+	</ul>
+    <div id="Thumbnail" style="display:none; bottom:0px; position:absolute; max-width:480px; max-height:272px;">
+        <video id="ThumbnailVideo" width="100%" height="50%" preload="auto">
+            <source src="media/Lost.S01E01.small.short.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<div id="CommentBar" class="mainUI">
+  <form name="form1" id="form1" method="post" action="">
+  	<input type="hidden" name="UserID" id="UserID" value="1">
+  	<input type="hidden" name="MediaID" id="MediaID" value="0">
+    <input type="text" name="CommentText" id="CommentText" autocomplete="off" tabindex="0" placeholder="Join the conversation, leave a comment when you see something to talk about" maxlength="140" style="position:absolute; left: 5px; right: 100px; top: 4px;">
+    <select name="Mood" class="input-medium">
+    	<option value="normal">Comment</option>
+    	<option value="question">Question</option>
+    	<option value="rant">Rant</option>
+    </select>
+    <input type="submit" name="CommentButton" id="CommentButton" value="Send" style="position: absolute; right: 5px; top: 4px;" class="btn btn-inverse">
+  </form>
+</div>
+<div id="UserReg" class="mainUI">
+  <h1>Welcome to Water Cooler TV</h1>
+  <img id="WelcomeLogo" src="wc-logo.png" alt="Water Cooler TV">
+  <form action="" method="post" name="UserRegistrationForm" id="UserRegistrationForm">
+    <label for="UserName" id="username_label">What is your name?</label><br/>
+    <input name="UserName" id="UserName" type="text" maxlength="30"><br/>
+    <input type="submit" id="UserRegButton" value="Join the conversation">
+  </form>
+</div>
+</body>
+</html>
