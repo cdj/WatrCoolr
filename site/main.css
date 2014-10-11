@@ -1,0 +1,28 @@
+/*.wc-logo{
+	height: 245px;
+	background: url('wc-logo.png');
+}*/
+.hero-unit p{
+	font-size: 16px;
+	font-weight: bold;
+}
+.hero-unit p:nth-child(even){
+	color:#0022AA;
+}
+.alert{
+	padding: 10px;
+	margin: 0px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.row{
+	width:700px;
+	margin: 0 auto;
+}
+.span6{
+	width: 700px;
+}
+img[src="wc-logo.png"]{
+	float:left;
+	margin-right:15px;
+}
